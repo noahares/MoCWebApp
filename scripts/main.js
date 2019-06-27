@@ -7,7 +7,7 @@ const FRICTION = 0.95;
 const MAX_SPEED = 2.5;
 const X_INIT = RADIUS;
 const Y_INIT = RADIUS;
-const REFRESH = 5;
+const REFRESH = 50;
 
 var tiltX = 0;
 var tiltY = 0;
@@ -23,33 +23,7 @@ var speedY = 0;
 function init() {
 
         initPlayground();
-        if (window.DeviceOrientationEvent) {
-                window.addEventListener("devicemotion", function(event) {
-                        console.log("hi");
-                        switch (window.orientation) {
-                                case 0:
-                                        tiltX = event.accelerationIncludingGravity.x * (-1);
-                                        tiltY = event.accelerationIncludingGravity.y * (-1);
-                                        break;
-                                case -90:
-                                        tiltX = event.accelerationIncludingGravity.x * (-1);
-                                        tiltY = event.accelerationIncludingGravity.y;
-                                        break;
-                                case 90:
-                                        tiltX = event.accelerationIncludingGravity.x;
-                                        tiltY = event.accelerationIncludingGravity.y * (-1);
-                                        break;
-                                case 180:
-                                        tiltX = event.accelerationIncludingGravity.x;
-                                        tiltY = event.accelerationIncludingGravity.y;
-                                        break;
-                        }
-
-                }, false);
-        foo = setInterval("handleOrientationEvent(tiltX, tiltY)", REFRESH);
-        } else {
-                alert("Sorry, device orientation not supported!");
-        }
+        foo = setInterval("handleOrientationEvent()", REFRESH);
 }
 
 function initPlayground() {
@@ -65,9 +39,10 @@ function initPlayground() {
 
 
 
-function handleOrientationEvent(tiltX, tiltY) {
-        applyRandomForce();
-        speedX = (speedX + tiltX) * FRICTION;
+function handleOrientationEvent() {
+        console.log(speedX);
+        //applyRandomForce();
+        speedX = (speedX + 1/*tiltX*/) * FRICTION;
         speedY = (speedY + tiltY) * FRICTION;
         if (speedX > MAX_SPEED) speedX = MAX_SPEED;
         if (speedX < -MAX_SPEED) speedX = -MAX_SPEED;
@@ -89,8 +64,9 @@ function updateBall() {
 }
 
 function collisionDetection() {
-        x = x + speedX - RADIUS;
-        y = y + speedY - RADIUS;
+        x = x + speedX;
+        y = y + speedY;
+        console.log(x +", " + y);
 
         if (x + RADIUS > PLAYGROUND_WIDTH - GOAL_WIDTH && y + RADIUS < (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + GOAL_HEIGHT && y + RADIUS > (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2) goal();
 
@@ -103,4 +79,31 @@ function collisionDetection() {
 
 function goal() {
 
+}
+function handleMotionEvent(event) {
+        console.log(event.accelerationIncludingGravity.x);
+        switch (window.orientation) {
+                case 0:
+                        tiltX = event.accelerationIncludingGravity.x * (-1);
+                        tiltY = event.accelerationIncludingGravity.y * (-1);
+                        break;
+                case -90:
+                        tiltX = event.accelerationIncludingGravity.x * (-1);
+                        tiltY = event.accelerationIncludingGravity.y;
+                        break;
+                case 90:
+                        tiltX = event.accelerationIncludingGravity.x;
+                        tiltY = event.accelerationIncludingGravity.y * (-1);
+                        break;
+                case 180:
+                        tiltX = event.accelerationIncludingGravity.x;
+                        tiltY = event.accelerationIncludingGravity.y;
+                        break;
+        }
+ }
+
+if (window.DeviceOrientationEvent) {
+        window.addEventListener("devicemotion", handleMotionEvent, true);
+} else {
+        alert("Sorry, device orientation not supported!");
 }
