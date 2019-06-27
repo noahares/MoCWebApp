@@ -23,7 +23,8 @@ var speedY = 0;
 function init() {
 
         initPlayground();
-        foo = setInterval("handleOrientationEvent()", REFRESH);
+        setInterval("handleOrientationEvent()", REFRESH);
+        setInterval("applyRandomForce()", 2 * REFRESH);
 }
 
 function initPlayground() {
