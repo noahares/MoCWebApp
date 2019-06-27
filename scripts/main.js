@@ -23,10 +23,24 @@ var speedY = 0;
 function init() {
         initPlayground();
         if (window.DeviceOrientationEvent) {
-                window.addEventListener("deviceorientation", function(event) {
-                        // TODO: switch tilts for device orientation
-                        tiltX = event.beta;
-                        tiltY = event.gamma;
+                window.addEventListener("devicemotion", function(event) {
+                        switch (window.orientation) {
+                                case 0:
+                                        tiltX = event.accelerationIncludeGravity.x * (-1);
+                                        tiltY = event.accelerationIncludeGravity.y * (-1);
+                                        break;
+                                case -90:
+                                        tiltX = event.accelerationIncludeGravity.x * (-1);
+                                        tiltY = event.accelerationIncludeGravity.y;
+                                        break;
+                                case 90:
+                                        tiltX = event.accelerationIncludeGravity.x;
+                                        tiltY = event.accelerationIncludeGravity.y * (-1);
+                                        break;
+                                case 180:
+                                        tiltX = event.accelerationIncludeGravity.x;
+                                        tiltY = event.accelerationIncludeGravity.y;
+                                        break;
 
                 }, true);
         setInterval("handleOrientationEvent(tiltX, tiltY)", REFRESH);
@@ -83,5 +97,5 @@ function collisionDetection() {
 }
 
 function goal() {
-        showInfoScreen("GOAL!");
+
 }
