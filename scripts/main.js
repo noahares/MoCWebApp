@@ -42,7 +42,7 @@ function initPlayground() {
 function handleOrientationEvent() {
         console.log(speedX);
         //applyRandomForce();
-        speedX = (speedX + 1/*tiltX*/) * FRICTION;
+        speedX = (speedX + tiltX) * FRICTION;
         speedY = (speedY + tiltY) * FRICTION;
         if (speedX > MAX_SPEED) speedX = MAX_SPEED;
         if (speedX < -MAX_SPEED) speedX = -MAX_SPEED;
