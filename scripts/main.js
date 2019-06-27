@@ -21,9 +21,11 @@ var speedX = 0;
 var speedY = 0;
 
 function init() {
+
         initPlayground();
         if (window.DeviceOrientationEvent) {
                 window.addEventListener("devicemotion", function(event) {
+                        console.log("hi");
                         switch (window.orientation) {
                                 case 0:
                                         tiltX = event.accelerationIncludingGravity.x * (-1);
@@ -43,7 +45,7 @@ function init() {
                                         break;
                         }
 
-                }, true);
+                }, false);
         foo = setInterval("handleOrientationEvent(tiltX, tiltY)", REFRESH);
         } else {
                 alert("Sorry, device orientation not supported!");
