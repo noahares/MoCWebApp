@@ -41,6 +41,7 @@ function init() {
                                         tiltX = event.accelerationIncludeGravity.x;
                                         tiltY = event.accelerationIncludeGravity.y;
                                         break;
+                        }
 
                 }, true);
         setInterval("handleOrientationEvent(tiltX, tiltY)", REFRESH);
