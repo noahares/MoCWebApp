@@ -7,7 +7,7 @@ const FRICTION = 0.95;
 const MAX_SPEED = 2.5;
 const X_INIT = RADIUS;
 const Y_INIT = RADIUS;
-const REFRESH = 50;
+const REFRESH = 25;
 
 var tiltX = 0;
 var tiltY = 0;
@@ -30,8 +30,8 @@ function init() {
 function initPlayground() {
         document.getElementById("playground").style.width = PLAYGROUND_WIDTH + "px";
         document.getElementById("playground").style.height = PLAYGROUND_HEIGHT + "px";
-        document.getElementById("ball").style.width = RADIUS + "px";
-        document.getElementById("ball").style.height = RADIUS + "px";
+        document.getElementById("ball").style.width = RADIUS * 2 + "px";
+        document.getElementById("ball").style.height = RADIUS * 2 + "px";
         document.getElementById("goal").style.width = GOAL_WIDTH + "px";
         document.getElementById("goal").style.height = GOAL_HEIGHT + "px";
         document.getElementById("goal").style.left = PLAYGROUND_WIDTH - GOAL_WIDTH + "px";
