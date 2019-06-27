@@ -30,8 +30,8 @@ function init() {
 function initPlayground() {
         document.getElementById("playground").style.width = PLAYGROUND_WIDTH + "px";
         document.getElementById("playground").style.height = PLAYGROUND_HEIGHT + "px";
-        document.getElementById("ball").style.width = RADIUS * 2 + "px";
-        document.getElementById("ball").style.height = RADIUS * 2 + "px";
+        document.getElementById("ball").style.width = RADIUS + "px";
+        document.getElementById("ball").style.height = RADIUS + "px";
         document.getElementById("goal").style.width = GOAL_WIDTH + "px";
         document.getElementById("goal").style.height = GOAL_HEIGHT + "px";
         document.getElementById("goal").style.left = PLAYGROUND_WIDTH - GOAL_WIDTH + "px";
@@ -70,9 +70,9 @@ function collisionDetection() {
         if (x + RADIUS > PLAYGROUND_WIDTH - GOAL_WIDTH && y + RADIUS < (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + GOAL_HEIGHT && y + RADIUS > (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2) goal();
 
         if (x > PLAYGROUND_WIDTH - 2 * RADIUS) x = PLAYGROUND_WIDTH - 2 * RADIUS;
-        if (x < RADIUS) x = 2 * RADIUS;
+        if (x < RADIUS) x = RADIUS;
         if (y > PLAYGROUND_HEIGHT - 2 * RADIUS) y = PLAYGROUND_HEIGHT - 2 * RADIUS;
-        if (y < RADIUS) y = 2 * RADIUS;
+        if (y < RADIUS) y = RADIUS;
 
 }
 
