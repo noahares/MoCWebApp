@@ -41,7 +41,6 @@ function initPlayground() {
 
 
 function handleOrientationEvent() {
-        console.log(speedX);
         //applyRandomForce();
         speedX = (speedX + tiltX) * FRICTION;
         speedY = (speedY + tiltY) * FRICTION;
@@ -67,14 +66,13 @@ function updateBall() {
 function collisionDetection() {
         x = x + speedX;
         y = y + speedY;
-        console.log(x +", " + y);
 
         if (x + RADIUS > PLAYGROUND_WIDTH - GOAL_WIDTH && y + RADIUS < (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + GOAL_HEIGHT && y + RADIUS > (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2) goal();
 
-        if (x > PLAYGROUND_WIDTH - RADIUS) x = PLAYGROUND_WIDTH - RADIUS;
-        if (x < RADIUS) x = RADIUS;
-        if (y > PLAYGROUND_HEIGHT - RADIUS) y = PLAYGROUND_HEIGHT - RADIUS;
-        if (y < RADIUS) y = RADIUS;
+        if (x > PLAYGROUND_WIDTH - 2 * RADIUS) x = PLAYGROUND_WIDTH - 2 * RADIUS;
+        if (x < RADIUS) x = 2 * RADIUS;
+        if (y > PLAYGROUND_HEIGHT - 2 * RADIUS) y = PLAYGROUND_HEIGHT - 2 * RADIUS;
+        if (y < RADIUS) y = 2 * RADIUS;
 
 }
 
@@ -82,7 +80,6 @@ function goal() {
 
 }
 function handleMotionEvent(event) {
-        console.log(event.accelerationIncludingGravity.x);
         switch (window.orientation) {
                 case 0:
                         tiltX = event.accelerationIncludingGravity.x * (-1);
