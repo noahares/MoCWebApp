@@ -24,7 +24,7 @@ function init() {
 
         initPlayground();
         setInterval("handleOrientationEvent()", REFRESH);
-        setInterval("applyRandomForce()", 2 * REFRESH);
+        setInterval("applyRandomForce()", 4 * REFRESH);
 }
 
 function initPlayground() {
@@ -70,9 +70,9 @@ function collisionDetection() {
         if (x + RADIUS > PLAYGROUND_WIDTH - GOAL_WIDTH && y + RADIUS < (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + GOAL_HEIGHT && y + RADIUS > (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2) goal();
 
         if (x > PLAYGROUND_WIDTH - 2 * RADIUS) x = PLAYGROUND_WIDTH - 2 * RADIUS;
-        if (x < RADIUS) x = RADIUS;
+        if (x < RADIUS / 2) x = RADIUS;
         if (y > PLAYGROUND_HEIGHT - 2 * RADIUS) y = PLAYGROUND_HEIGHT - 2 * RADIUS;
-        if (y < RADIUS) y = RADIUS;
+        if (y < RADIUS / 2) y = RADIUS;
 
 }
 
