@@ -1,6 +1,6 @@
 const PLAYGROUND_WIDTH = 800;
 const PLAYGROUND_HEIGHT = 400;
-const RADIUS = 7.5;
+const RADIUS = 8;
 const GOAL_WIDTH = 5;
 const GOAL_HEIGHT = 100;
 const FRICTION = 0.95;
@@ -70,9 +70,9 @@ function collisionDetection() {
         if (x + RADIUS > PLAYGROUND_WIDTH - GOAL_WIDTH && y + RADIUS < (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + GOAL_HEIGHT && y + RADIUS > (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2) goal();
 
         if (x > PLAYGROUND_WIDTH - 2 * RADIUS) x = PLAYGROUND_WIDTH - 2 * RADIUS;
-        if (x < RADIUS / 2) x = RADIUS;
+        if (x < RADIUS / 2) x = RADIUS / 2;
         if (y > PLAYGROUND_HEIGHT - 2 * RADIUS) y = PLAYGROUND_HEIGHT - 2 * RADIUS;
-        if (y < RADIUS / 2) y = RADIUS;
+        if (y < RADIUS / 2) y = RADIUS / 2;
 
 }
 
