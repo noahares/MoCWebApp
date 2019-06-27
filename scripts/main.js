@@ -44,7 +44,9 @@ function init() {
                         }
 
                 }, true);
-        setInterval("handleOrientationEvent(tiltX, tiltY)", REFRESH);
+        foo = setInterval("handleOrientationEvent(tiltX, tiltY)", REFRESH);
+        } else {
+                alert("Sorry, device orientation not supported!");
         }
 }
 
