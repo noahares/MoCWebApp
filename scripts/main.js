@@ -1,6 +1,8 @@
 const PLAYGROUND_WIDTH = 800;
 const PLAYGROUND_HEIGHT = 400;
 const RADIUS = 7.5;
+const GOAL_WIDTH = 5;
+const GOAL_HEIGHT = 100;
 const FRICTION = 0.95;
 const MAX_SPEED = 2.5;
 const X_INIT = RADIUS;
@@ -22,11 +24,12 @@ function init() {
         initPlayground();
         if (window.DeviceOrientationEvent) {
                 window.addEventListener("deviceorientation", function(event) {
+                        // TODO: switch tilts for device orientation
                         tiltX = event.beta;
                         tiltY = event.gamma;
 
                 }, true);
-        setIntervall("handleOrientationEvent(tiltX, tiltY)", REFRESH);
+        setInterval("handleOrientationEvent(tiltX, tiltY)", REFRESH);
         }
 }
 
@@ -35,6 +38,10 @@ function initPlayground() {
         document.getElementById("playground").style.height = PLAYGROUND_HEIGHT + "px";
         document.getElementById("ball").style.width = RADIUS * 2 + "px";
         document.getElementById("ball").style.height = RADIUS * 2 + "px";
+        document.getElementById("goal").style.width = GOAL_WIDTH + "px";
+        document.getElementById("goal").style.height = GOAL_HEIGHT + "px";
+        document.getElementById("goal").style.left = PLAYGROUND_WIDTH - GOAL_WIDTH + "px";
+        document.getElementById("goal").style.top = (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + "px";
 }
 
 
@@ -47,8 +54,8 @@ function handleOrientationEvent(tiltX, tiltY) {
         if (speedX < -MAX_SPEED) speedX = -MAX_SPEED;
         if (speedY > MAX_SPEED) speedY = MAX_SPEED;
         if (speedY < -MAX_SPEED) speedY = -MAX_SPEED;
-        updateBall();
         collisionDetection();
+        updateBall();
 }
 
 function applyRandomForce() {
@@ -58,23 +65,23 @@ function applyRandomForce() {
 }
 
 function updateBall() {
-        /* context.clear(0, 0, playground.width, playground.height);
-        context.beginPath();
-        context.arc(x, y, RADIUS, 0, MATH.Pi * 2);
-        context.fillStyle = "red";
-        context.fill();
-        context.closePath();
-        */
-        document.getElementById("ball").style.left = x + speedX - RADIUS + "px";
-        document.getElementById("ball").style.top = y + speedY - RADIUS + "px";
+        document.getElementById("ball").style.left = x + "px";
+        document.getElementById("ball").style.top = y + "px";
 }
 
 function collisionDetection() {
         x = x + speedX - RADIUS;
         y = y + speedY - RADIUS;
-        var ballLeft = document.getElementById("ball").style.left;
-        var ballTop = document.getElementById("ball").style.top;
 
-        //if (x > document.getElementById)
+        if (x + RADIUS > PLAYGROUND_WIDTH - GOAL_WIDTH && y + RADIUS < (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + GOAL_HEIGHT && y + RADIUS > (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2) goal();
+
+        if (x > PLAYGROUND_WIDTH - RADIUS) x = PLAYGROUND_WIDTH - RADIUS;
+        if (x < RADIUS) x = RADIUS;
+        if (y > PLAYGROUND_HEIGHT - RADIUS) y = PLAYGROUND_HEIGHT - RADIUS;
+        if (y < RADIUS) y = RADIUS;
+
 }
 
+function goal() {
+        showInfoScreen("GOAL!");
+}
