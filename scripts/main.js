@@ -77,7 +77,7 @@ function collisionDetection() {
 }
 
 function goal() {
-
+        alert("GOAL");
 }
 function handleMotionEvent(event) {
         switch (window.orientation) {
