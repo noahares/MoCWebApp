@@ -1,0 +1,19 @@
+#playground{
+        border: 1px solid rgb(0,0,0);
+        margin-left: 50px;
+        margin-top: 50px;
+}
+#ball{
+        position: relative;
+        background-color: red;
+        border-radius: 50%;
+}
+#goal{
+        position: relative;
+        background-color: green;
+        width: 5px;
+        height: 100px;
+        top: 125px;
+        left: 795px;
+}
+
