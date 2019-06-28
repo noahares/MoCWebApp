@@ -1,6 +1,7 @@
 const PLAYGROUND_WIDTH = 800;
 const PLAYGROUND_HEIGHT = 400;
 const RADIUS = 8;
+const DIAMETER = 2 * RADIUS;
 const GOAL_WIDTH = 5;
 const GOAL_HEIGHT = 100;
 const FRICTION = 0.85;
@@ -9,6 +10,7 @@ const X_INIT = RADIUS;
 const Y_INIT = RADIUS;
 const REFRESH = 10;
 const TIMEOUT = 1000;
+const RANDOM_FACTOR = 30;
 
 var tiltX = 0;
 var tiltY = 0;
@@ -35,8 +37,8 @@ function init() {
 function initPlayground() {
         document.getElementById("playground").style.width = PLAYGROUND_WIDTH + "px";
         document.getElementById("playground").style.height = PLAYGROUND_HEIGHT + "px";
-        document.getElementById("ball").style.width = RADIUS * 2 + "px";
-        document.getElementById("ball").style.height = RADIUS * 2 + "px";
+        document.getElementById("ball").style.width = DIAMETER + "px";
+        document.getElementById("ball").style.height = DIAMETER + "px";
         document.getElementById("goal").style.width = GOAL_WIDTH + "px";
         document.getElementById("goal").style.height = GOAL_HEIGHT + "px";
         document.getElementById("goal").style.left = PLAYGROUND_WIDTH - GOAL_WIDTH + "px";
@@ -61,8 +63,8 @@ function handleOrientationEvent() {
 function applyRandomForce() {
         var directX = (Math.random() > 0.5 ? 1 : -1);
         var directY = (Math.random() > 0.5 ? 1 : -1);
-        var randomX = Math.floor(Math.random() * 30 * directX);
-        var randomY = Math.floor(Math.random() * 30 * directY);
+        var randomX = Math.floor(Math.random() * RANDOM_FACTOR * directX);
+        var randomY = Math.floor(Math.random() * RANDOM_FACTOR * directY);
         tiltX = tiltX + randomX;
         tiltY = tiltY + randomY;
 }
@@ -79,13 +81,13 @@ function collisionDetection() {
         // if ball hits right side
         if (x + RADIUS > PLAYGROUND_WIDTH - GOAL_WIDTH) {
                 // if ball hits goal
-                if (y + 2 * RADIUS < (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + GOAL_HEIGHT && y + 2 * RADIUS > (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2) goal();
+                if (y + DIAMETER < (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + GOAL_HEIGHT && y + DIAMETER > (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2) goal();
                 // ball outside of goal
                 else missed();
         }
-        //if (x > PLAYGROUND_WIDTH - 2 * RADIUS) x = PLAYGROUND_WIDTH - 2 * RADIUS;
+        //if (x > PLAYGROUND_WIDTH - DIAMETER) x = PLAYGROUND_WIDTH - DIAMETER;
         if (x < 0) x = 0;
-        if (y > PLAYGROUND_HEIGHT - 2 * RADIUS) y = PLAYGROUND_HEIGHT - 2 * RADIUS;
+        if (y > PLAYGROUND_HEIGHT - DIAMETER) y = PLAYGROUND_HEIGHT - DIAMETER;
         if (y < 0) y = 0;
 
 }
