@@ -77,6 +77,7 @@ function collisionDetection() {
                 if (y + 2 * RADIUS < (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + GOAL_HEIGHT && y + 2 * RADIUS > (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2) goal();
                 // ball outside of goal
                 else missed();
+        }
         //if (x > PLAYGROUND_WIDTH - 2 * RADIUS) x = PLAYGROUND_WIDTH - 2 * RADIUS;
         if (x < 0) x = 0;
         if (y > PLAYGROUND_HEIGHT - 2 * RADIUS) y = PLAYGROUND_HEIGHT - 2 * RADIUS;
