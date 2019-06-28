@@ -28,6 +28,7 @@ function init() {
         initPlayground();
         setInterval("handleOrientationEvent()", REFRESH);
         setInterval("applyRandomForce()", 4 * REFRESH);
+        notify("Let's go");
 }
 
 function initPlayground() {
@@ -113,7 +114,7 @@ function notify(message) {
 }
 
 function hide() {
-       document.getElementById("note").style.visibility == "hidden";
+       document.getElementById("note").style.visibility = "hidden";
 }
 
 function handleMotionEvent(event) {

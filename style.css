@@ -16,6 +16,8 @@
 
 #note{
         margin: auto;
+        visibility: hidden;
+        background-color: yellow;
         width: 100%;
         text-align: center;
 }
