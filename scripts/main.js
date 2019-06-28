@@ -95,7 +95,7 @@ function collisionDetection() {
 function goal() {
         notify("GOAL");
         score++;
-        randomFactor += 5;
+        if (randomFactor <= 25 ) randomFactor += 5;
         if (score >= 0) document.getElementById("score").style.backgroundColor = "green";
         document.getElementById("score").innerHTML = score;
         x = RADIUS;
