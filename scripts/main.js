@@ -56,10 +56,12 @@ function handleOrientationEvent() {
 }
 
 function applyRandomForce() {
-        var randomX = Math.floor(Math.random() * 40);
-        var randomY = Math.floor(Math.random() * 40);
-        tiltX = tiltX - randomX;
-        tiltY = tiltY - randomY;
+        var directX = (Math.random() > 0.5 ? 1 : -1);
+        var directY = (Math.random() > 0.5 ? 1 : -1);
+        var randomX = Math.floor(Math.random() * 30 * directX);
+        var randomY = Math.floor(Math.random() * 30 * directY);
+        tiltX = tiltX + randomX;
+        tiltY = tiltY + randomY;
 }
 
 function updateBall() {
