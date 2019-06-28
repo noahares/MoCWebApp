@@ -4,7 +4,7 @@ const RADIUS = 8;
 const GOAL_WIDTH = 5;
 const GOAL_HEIGHT = 100;
 const FRICTION = 0.85;
-const MAX_SPEED = 4;
+const MAX_SPEED = 5;
 const X_INIT = RADIUS;
 const Y_INIT = RADIUS;
 const REFRESH = 10;
@@ -43,7 +43,6 @@ function initPlayground() {
 
 
 function handleOrientationEvent() {
-        //applyRandomForce();
         speedX = (speedX + tiltX) * FRICTION;
         speedY = (speedY + tiltY) * FRICTION;
         if (speedX > MAX_SPEED) speedX = MAX_SPEED;
@@ -55,7 +54,8 @@ function handleOrientationEvent() {
 }
 
 function applyRandomForce() {
-        var random = Math.floor(Math.random() * 8);
+        var randomX = Math.floor(Math.random() * 10);
+        var randomY = Math.floor(Math.random() * 10);
         tiltX = tiltX - random;
         tiltY = tiltY - random;
 }
@@ -80,6 +80,7 @@ function collisionDetection() {
 
 function goal() {
         alert("GOAL");
+        score++;
         x = RADIUS;
         y = RADIUS;
         updateBall();
