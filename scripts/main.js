@@ -11,7 +11,7 @@ const Y_INIT = RADIUS;
 const REFRESH = 10;
 const TIMEOUT = 1000;
 
-var randomFactor = 20;
+var randomFactor = 10;
 
 var tiltX = 0;
 var tiltY = 0;
