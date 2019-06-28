@@ -9,7 +9,7 @@
         border-radius: 50%;
 }
 #goal{
-        position: relative;
+        position: absolute;
         background-color: green;
 }
 
