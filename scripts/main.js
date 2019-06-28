@@ -26,7 +26,7 @@ function init() {
 
         initPlayground();
         setInterval("handleOrientationEvent()", REFRESH);
-        setInterval("applyRandomForce()", 4 * REFRESH);
+        setInterval("applyRandomForce()", 2 * REFRESH);
 }
 
 function initPlayground() {
@@ -54,8 +54,8 @@ function handleOrientationEvent() {
 }
 
 function applyRandomForce() {
-        var randomX = Math.floor(Math.random() * 10);
-        var randomY = Math.floor(Math.random() * 10);
+        var randomX = Math.floor(Math.random() * 20);
+        var randomY = Math.floor(Math.random() * 20);
         tiltX = tiltX - random;
         tiltY = tiltY - random;
 }
