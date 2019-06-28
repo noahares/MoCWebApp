@@ -82,6 +82,7 @@ function goal() {
         alert("GOAL");
         x = RADIUS;
         y = RADIUS;
+        updateBall();
 }
 
 function handleMotionEvent(event) {
