@@ -3,11 +3,11 @@ const PLAYGROUND_HEIGHT = 400;
 const RADIUS = 8;
 const GOAL_WIDTH = 5;
 const GOAL_HEIGHT = 100;
-const FRICTION = 0.95;
+const FRICTION = 0.85;
 const MAX_SPEED = 4;
 const X_INIT = RADIUS;
 const Y_INIT = RADIUS;
-const REFRESH = 20;
+const REFRESH = 10;
 
 var tiltX = 0;
 var tiltY = 0;
@@ -55,7 +55,7 @@ function handleOrientationEvent() {
 }
 
 function applyRandomForce() {
-        var random = Math.floor(Math.random() * 5);
+        var random = Math.floor(Math.random() * 8);
         tiltX = tiltX - random;
         tiltY = tiltY - random;
 }
