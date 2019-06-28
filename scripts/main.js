@@ -30,7 +30,7 @@ function init() {
         setInterval("applyRandomForce()", 4 * REFRESH);
         notify("Let's go");
         hide("start");
-        setInterval(document.getElementById("info").innerHTML = tiltX + ", " + tiltY, TIMEOUT);
+        setInterval("document.getElementById("info").innerHTML = tiltX + ', ' + tiltY", TIMEOUT);
 }
 
 function initPlayground() {
