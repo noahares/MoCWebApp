@@ -117,7 +117,7 @@ function notify(message) {
 }
 
 function hide(element) {
-       document.getElementById("note").style.visibility = "hidden";
+       document.getElementById(element).style.visibility = "hidden";
 }
 
 function handleMotionEvent(event) {
