@@ -26,7 +26,7 @@ function init() {
 
         initPlayground();
         setInterval("handleOrientationEvent()", REFRESH);
-        setInterval("applyRandomForce()", 2 * REFRESH);
+        setInterval("applyRandomForce()", 4 * REFRESH);
 }
 
 function initPlayground() {
