@@ -5,7 +5,7 @@ const DIAMETER = 2 * RADIUS;
 const GOAL_WIDTH = 5;
 const GOAL_HEIGHT = 100;
 const FRICTION = 0.85;
-const MAX_SPEED = 6;
+const MAX_SPEED = 5;
 const X_INIT = RADIUS;
 const Y_INIT = RADIUS;
 const REFRESH = 10;
@@ -95,7 +95,7 @@ function collisionDetection() {
 function goal() {
         notify("GOAL");
         score++;
-        if (randomFactor <= 25 ) randomFactor += 5;
+        if (randomFactor < 30) randomFactor++;
         if (score >= 0) document.getElementById("score").style.backgroundColor = "green";
         document.getElementById("score").innerHTML = score;
         x = RADIUS;
@@ -106,7 +106,7 @@ function goal() {
 function missed() {
         notify("MISSED");
         score--;
-        if (randomFactor >= 5) randomFactor -= 5;
+        if (randomFactor > 0) randomFactor--;
         if (score < 0) document.getElementById("score").style.backgroundColor = "red";
         document.getElementById("score").innerHTML = score;
         x = RADIUS;
