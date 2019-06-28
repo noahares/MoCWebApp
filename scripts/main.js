@@ -113,7 +113,7 @@ function missed() {
 function notify(message) {
         document.getElementById("note").innerHTML = message;
         document.getElementById("note").style.visibility = "visible";
-        setTimeout("hide("note")", TIMEOUT);
+        setTimeout("hide('note')", TIMEOUT);
 }
 
 function hide(element) {
