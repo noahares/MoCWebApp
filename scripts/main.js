@@ -114,6 +114,7 @@ function notify(message) {
 
 function hide() {
        document.getElementById("note").style.visibility == "hidden";
+}
 
 function handleMotionEvent(event) {
         switch (window.orientation) {
