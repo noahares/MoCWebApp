@@ -5,12 +5,13 @@ const DIAMETER = 2 * RADIUS;
 const GOAL_WIDTH = 5;
 const GOAL_HEIGHT = 100;
 const FRICTION = 0.85;
-const MAX_SPEED = 5;
+const MAX_SPEED = 7;
 const X_INIT = RADIUS;
 const Y_INIT = RADIUS;
 const REFRESH = 10;
 const TIMEOUT = 1000;
-const RANDOM_FACTOR = 20;
+
+var randomFactor = 20;
 
 var tiltX = 0;
 var tiltY = 0;
@@ -62,8 +63,8 @@ function handleOrientationEvent() {
 function applyRandomForce() {
         var directX = (Math.random() > 0.5 ? 1 : -1);
         var directY = (Math.random() > 0.5 ? 1 : -1);
-        var randomX = Math.floor(Math.random() * RANDOM_FACTOR * directX);
-        var randomY = Math.floor(Math.random() * RANDOM_FACTOR * directY);
+        var randomX = Math.floor(Math.random() * randomFactor * directX);
+        var randomY = Math.floor(Math.random() * randomFactor * directY);
         tiltX = tiltX + randomX;
         tiltY = tiltY + randomY;
 }
@@ -94,6 +95,7 @@ function collisionDetection() {
 function goal() {
         notify("GOAL");
         score++;
+        randomFactor += 5;
         if (score >= 0) document.getElementById("score").style.backgroundColor = "green";
         document.getElementById("score").innerHTML = score;
         x = RADIUS;
@@ -104,6 +106,7 @@ function goal() {
 function missed() {
         notify("MISSED");
         score--;
+        randomFactor -= 5;
         if (score < 0) document.getElementById("score").style.backgroundColor = "red";
         document.getElementById("score").innerHTML = score;
         x = RADIUS;
