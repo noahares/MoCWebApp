@@ -10,7 +10,7 @@ const X_INIT = RADIUS;
 const Y_INIT = RADIUS;
 const REFRESH = 10;
 const TIMEOUT = 1000;
-const RANDOM_FACTOR = 30;
+const RANDOM_FACTOR = 20;
 
 var tiltX = 0;
 var tiltY = 0;
