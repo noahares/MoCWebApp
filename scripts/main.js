@@ -14,8 +14,6 @@ const RANDOM_FACTOR = 30;
 
 var tiltX = 0;
 var tiltY = 0;
-var lastTiltX = 0;
-var lastTiltY = 0;
 
 var x = X_INIT;
 var y = Y_INIT;
@@ -32,6 +30,7 @@ function init() {
         setInterval("applyRandomForce()", 4 * REFRESH);
         notify("Let's go");
         hide("start");
+        setIntervall(document.getElementById("info").innerHTML = tiltX + ", " + tiltY, TIMEOUT);
 }
 
 function initPlayground() {
