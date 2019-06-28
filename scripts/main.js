@@ -8,6 +8,7 @@ const MAX_SPEED = 5;
 const X_INIT = RADIUS;
 const Y_INIT = RADIUS;
 const REFRESH = 10;
+const TIMEOUT = 1000;
 
 var tiltX = 0;
 var tiltY = 0;
@@ -88,7 +89,7 @@ function collisionDetection() {
 }
 
 function goal() {
-        alert("GOAL");
+        notify("GOAL");
         score++;
         document.getElementById("score").innerHTML = score;
         x = RADIUS;
@@ -97,13 +98,22 @@ function goal() {
 }
 
 function missed() {
-        alert("MISSED");
+        notify("MISSED");
         score--;
         document.getElementById("score").innerHTML = score;
         x = RADIUS;
         y = RADIUS;
         updateBall();
 }
+
+function notify(message) {
+        document.getElementById("note").innerHTML = message;
+        document.getElementById("note").style.visibility = "visible";
+        setTimeout("hide()", TIMEOUT);
+}
+
+function hide() {
+       document.getElementById("note").style.visibility == "hidden";
 
 function handleMotionEvent(event) {
         switch (window.orientation) {
