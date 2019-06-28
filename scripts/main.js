@@ -29,6 +29,7 @@ function init() {
         setInterval("handleOrientationEvent()", REFRESH);
         setInterval("applyRandomForce()", 4 * REFRESH);
         notify("Let's go");
+        hide("start");
 }
 
 function initPlayground() {
@@ -92,6 +93,7 @@ function collisionDetection() {
 function goal() {
         notify("GOAL");
         score++;
+        if (score >= 0) document.getElementById("score").style.background-color = "green";
         document.getElementById("score").innerHTML = score;
         x = RADIUS;
         y = RADIUS;
@@ -101,6 +103,7 @@ function goal() {
 function missed() {
         notify("MISSED");
         score--;
+        if (score < 0) document.getElementById("score").style.background-color = "red";
         document.getElementById("score").innerHTML = score;
         x = RADIUS;
         y = RADIUS;
@@ -110,10 +113,10 @@ function missed() {
 function notify(message) {
         document.getElementById("note").innerHTML = message;
         document.getElementById("note").style.visibility = "visible";
-        setTimeout("hide()", TIMEOUT);
+        setTimeout("hide("note")", TIMEOUT);
 }
 
-function hide() {
+function hide(element) {
        document.getElementById("note").style.visibility = "hidden";
 }
 
