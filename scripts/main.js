@@ -95,7 +95,7 @@ function collisionDetection() {
 function goal() {
         notify("GOAL");
         score++;
-        if (randomFactor < 30) randomFactor++;
+        if (randomFactor < 20) randomFactor += 2;
         if (score >= 0) document.getElementById("score").style.backgroundColor = "green";
         document.getElementById("score").innerHTML = score;
         x = RADIUS;
@@ -106,7 +106,7 @@ function goal() {
 function missed() {
         notify("MISSED");
         score--;
-        if (randomFactor > 0) randomFactor--;
+        if (randomFactor > 0) randomFactor -= 2;
         if (score < 0) document.getElementById("score").style.backgroundColor = "red";
         document.getElementById("score").innerHTML = score;
         x = RADIUS;
