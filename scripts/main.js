@@ -7,7 +7,7 @@ const FRICTION = 0.95;
 const MAX_SPEED = 4;
 const X_INIT = RADIUS;
 const Y_INIT = RADIUS;
-const REFRESH = 25;
+const REFRESH = 20;
 
 var tiltX = 0;
 var tiltY = 0;
@@ -19,6 +19,8 @@ var y = Y_INIT;
 
 var speedX = 0;
 var speedY = 0;
+
+var score = 0;
 
 function init() {
 
@@ -78,7 +80,10 @@ function collisionDetection() {
 
 function goal() {
         alert("GOAL");
+        x = RADIUS;
+        y = RADIUS;
 }
+
 function handleMotionEvent(event) {
         switch (window.orientation) {
                 case 0:
