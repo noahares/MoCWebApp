@@ -38,6 +38,8 @@ function initPlayground() {
         document.getElementById("goal").style.height = GOAL_HEIGHT + "px";
         document.getElementById("goal").style.left = PLAYGROUND_WIDTH - GOAL_WIDTH + "px";
         document.getElementById("goal").style.top = (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + "px";
+        document.getElementById("score").innerHTML = score;
+
 }
 
 
@@ -69,9 +71,13 @@ function collisionDetection() {
         x = x + speedX;
         y = y + speedY;
 
-        if (x + RADIUS > PLAYGROUND_WIDTH - GOAL_WIDTH && y + RADIUS < (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + GOAL_HEIGHT && y + RADIUS > (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2) goal();
-
-        if (x > PLAYGROUND_WIDTH - 2 * RADIUS) x = PLAYGROUND_WIDTH - 2 * RADIUS;
+        // if ball hits right side
+        if (x + RADIUS > PLAYGROUND_WIDTH - GOAL_WIDTH) {
+                // if ball hits goal
+                if (y + 2 * RADIUS < (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2 + GOAL_HEIGHT && y + 2 * RADIUS > (PLAYGROUND_HEIGHT - GOAL_HEIGHT) / 2) goal();
+                // ball outside of goal
+                else missed();
+        //if (x > PLAYGROUND_WIDTH - 2 * RADIUS) x = PLAYGROUND_WIDTH - 2 * RADIUS;
         if (x < 0) x = 0;
         if (y > PLAYGROUND_HEIGHT - 2 * RADIUS) y = PLAYGROUND_HEIGHT - 2 * RADIUS;
         if (y < 0) y = 0;
@@ -81,6 +87,16 @@ function collisionDetection() {
 function goal() {
         alert("GOAL");
         score++;
+        document.getElementById("score").innerHTML = score;
+        x = RADIUS;
+        y = RADIUS;
+        updateBall();
+}
+
+function missed() {
+        alert("MISSED");
+        score--;
+        document.getElementById("score").innerHTML = score;
         x = RADIUS;
         y = RADIUS;
         updateBall();
