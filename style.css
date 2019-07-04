@@ -20,12 +20,14 @@
         visibility: hidden;
         background-color: yellow;
         width: 100%;
+        font-size: 20px;
         text-align: center;
 }
 
 #score{
         margin: auto;
         width: 10%;
+        font-size: 30px;
         background-color: green;
         text-align: center;
 }
