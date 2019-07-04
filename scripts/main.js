@@ -28,7 +28,7 @@ function init() {
 
         initPlayground();
         setInterval("handleOrientationEvent()", REFRESH);
-        setInterval("applyRandomForce()", 2 * REFRESH);
+        setInterval("applyRandomForce()", 5 * REFRESH);
         notify("Let's go");
         hide("start");
         setInterval("document.getElementById('info').innerHTML = tiltX + ', ' + tiltY", TIMEOUT);
