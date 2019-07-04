@@ -35,6 +35,7 @@ function init() {
 }
 
 function initPlayground() {
+        document.getElementById("playground").style.visibility = "visible";
         document.getElementById("playground").style.width = PLAYGROUND_WIDTH + "px";
         document.getElementById("playground").style.height = PLAYGROUND_HEIGHT + "px";
         document.getElementById("ball").style.width = DIAMETER + "px";
