@@ -176,8 +176,8 @@ function handleMotionEvent(event) {
                         tiltY = event.accelerationIncludingGravity.y;
                         break;
                 case -90:
-                        tiltX = event.accelerationIncludingGravity.y * (-1);
-                        tiltY = event.accelerationIncludingGravity.x * (-1);
+                        tiltX = event.accelerationIncludingGravity.y;
+                        tiltY = event.accelerationIncludingGravity.x;
                         break;
                 case 90:
                         tiltX = event.accelerationIncludingGravity.y * (-1);
