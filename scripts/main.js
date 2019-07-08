@@ -1,3 +1,4 @@
+// self explanatory constants
 const PLAYGROUND_WIDTH = 800;
 const PLAYGROUND_HEIGHT = 400;
 const RADIUS = 8;
@@ -11,21 +12,34 @@ const Y_INIT = RADIUS;
 const REFRESH = 10;
 const TIMEOUT = 1000;
 
+// random counter force
 var randomFactor = 10;
 
+// amount of tilt in x and y
 var tiltX = 0;
 var tiltY = 0;
 
+// x and y coordinates of the ball
 var x = X_INIT;
 var y = Y_INIT;
 
+// speed in x and y
 var speedX = 0;
 var speedY = 0;
 
+//player score
 var score = 0;
 
+/*
+ * initialize playground, orientation listener and random force, hide start button and show start notification
+ */
 function init() {
 
+        if (window.DeviceOrientationEvent) {
+                window.addEventListener("devicemotion", handleMotionEvent, true);
+        } else {
+                alert("Sorry, device orientation not supported!");
+        }
         initPlayground();
         setInterval("handleOrientationEvent()", REFRESH);
         setInterval("applyRandomForce()", 5 * REFRESH);
@@ -34,6 +48,9 @@ function init() {
         setInterval("document.getElementById('info').innerHTML = tiltX + ', ' + tiltY", TIMEOUT);
 }
 
+/*
+ * create playgorund, ball and goal, show score
+ */
 function initPlayground() {
         document.getElementById("playground").style.visibility = "visible";
         document.getElementById("playground").style.width = PLAYGROUND_WIDTH + "px";
@@ -48,8 +65,9 @@ function initPlayground() {
 
 }
 
-
-
+/*
+ * update speed according to old speed and tilt, cap at max speed
+ */
 function handleOrientationEvent() {
         speedX = (speedX + tiltX) * FRICTION;
         speedY = (speedY + tiltY) * FRICTION;
@@ -61,6 +79,10 @@ function handleOrientationEvent() {
         updateBall();
 }
 
+/*
+ * apply a force with random strength in random direction
+ * gets stronger with higher score
+ */
 function applyRandomForce() {
         var directX = (Math.random() > 0.5 ? 1 : -1);
         var directY = (Math.random() > 0.5 ? 1 : -1);
@@ -70,11 +92,18 @@ function applyRandomForce() {
         tiltY = tiltY + randomY;
 }
 
+/*
+ * update ball coordinates
+ */
 function updateBall() {
         document.getElementById("ball").style.left = x + "px";
         document.getElementById("ball").style.top = y + "px";
 }
 
+/*
+ * check for collision with walls and goal
+ * wall side around goal also resets wall position
+ */
 function collisionDetection() {
         x = x + speedX;
         y = y + speedY;
@@ -93,6 +122,9 @@ function collisionDetection() {
 
 }
 
+/*
+ * goals increase score by 1, make random force stronger and reset ball position
+ */
 function goal() {
         notify("GOAL");
         score++;
@@ -104,6 +136,9 @@ function goal() {
         updateBall();
 }
 
+/*
+ * missing the goal decreases score by 1, makes random force weaker and resets ball position
+ */
 function missed() {
         notify("MISSED");
         score--;
@@ -115,16 +150,25 @@ function missed() {
         updateBall();
 }
 
+/*
+ * show a small notification banner on events
+ */
 function notify(message) {
         document.getElementById("note").innerHTML = message;
         document.getElementById("note").style.visibility = "visible";
         setTimeout("hide('note')", TIMEOUT);
 }
 
+/*
+ * hide element
+ */
 function hide(element) {
        document.getElementById(element).style.visibility = "hidden";
 }
 
+/*
+ * get tilt from motion sensor and respect device orientation
+ */
 function handleMotionEvent(event) {
         switch (window.orientation) {
                 case 0:
@@ -146,8 +190,3 @@ function handleMotionEvent(event) {
         }
  }
 
-if (window.DeviceOrientationEvent) {
-        window.addEventListener("devicemotion", handleMotionEvent, true);
-} else {
-        alert("Sorry, device orientation not supported!");
-}
