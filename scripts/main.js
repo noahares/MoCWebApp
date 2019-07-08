@@ -34,12 +34,6 @@ var score = 0;
  * initialize playground, orientation listener and random force, hide start button and show start notification
  */
 function init() {
-
-        if (window.DeviceOrientationEvent) {
-                window.addEventListener("devicemotion", handleMotionEvent, true);
-        } else {
-                alert("Sorry, device orientation not supported!");
-        }
         initPlayground();
         setInterval("handleOrientationEvent()", REFRESH);
         setInterval("applyRandomForce()", 5 * REFRESH);
@@ -190,3 +184,8 @@ function handleMotionEvent(event) {
         }
  }
 
+if (window.DeviceOrientationEvent) {
+        window.addEventListener("devicemotion", handleMotionEvent, true);
+} else {
+        alert("Sorry, device orientation not supported!");
+}
