@@ -45,7 +45,7 @@ function init() {
         setInterval("applyRandomForce()", 5 * REFRESH);
         notify("Let's go");
         hide("start");
-        setInterval("document.getElementById('info').innerHTML = tiltX + ', ' + tiltY", TIMEOUT);
+        setInterval("document.getElementById('info').innerHTML = tiltX + ', ' + tiltY +', ' + window.orientation", TIMEOUT);
 }
 
 /*
@@ -176,8 +176,8 @@ function handleMotionEvent(event) {
                         tiltY = event.accelerationIncludingGravity.y;
                         break;
                 case -90:
-                        tiltX = event.accelerationIncludingGravity.y;
-                        tiltY = event.accelerationIncludingGravity.x;
+                        tiltX = event.accelerationIncludingGravity.x * (-1);
+                        tiltY = event.accelerationIncludingGravity.y;
                         break;
                 case 90:
                         tiltX = event.accelerationIncludingGravity.y * (-1);
