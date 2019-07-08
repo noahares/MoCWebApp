@@ -1,8 +1,9 @@
 #playground{
         position: relative;
         border: 1px solid rgb(0,0,0);
-        margin-left: 50px;
-        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5em;
         visibility: hidden;
 }
 #ball{
@@ -20,14 +21,14 @@
         visibility: hidden;
         background-color: yellow;
         width: 100%;
-        font-size: 20px;
+        font-size: 2em;
         text-align: center;
 }
 
 #score{
         margin: auto;
         width: 10%;
-        font-size: 30px;
+        font-size: 2em;
         color: white;
         background-color: green;
         text-align: center;
@@ -40,5 +41,5 @@
 }
 
 #start_button{
-        font-size: 40px;
+        font-size: 5em;
 }
