@@ -34,6 +34,12 @@ var score = 0;
  * initialize playground, orientation listener and random force, hide start button and show start notification
  */
 function init() {
+
+        if (window.DeviceOrientationEvent) {
+                window.addEventListener("devicemotion", handleMotionEvent, true);
+        } else {
+                alert("Sorry, device orientation not supported!");
+        }
         initPlayground();
         setInterval("handleOrientationEvent()", REFRESH);
         setInterval("applyRandomForce()", 5 * REFRESH);
@@ -170,12 +176,12 @@ function handleMotionEvent(event) {
                         tiltY = event.accelerationIncludingGravity.y;
                         break;
                 case -90:
-                        tiltX = event.accelerationIncludingGravity.x * (-1);
-                        tiltY = event.accelerationIncludingGravity.y * (-1);
+                        tiltX = event.accelerationIncludingGravity.y * (-1);
+                        tiltY = event.accelerationIncludingGravity.x * (-1);
                         break;
                 case 90:
-                        tiltX = event.accelerationIncludingGravity.x;
-                        tiltY = event.accelerationIncludingGravity.y;
+                        tiltX = event.accelerationIncludingGravity.y;
+                        tiltY = event.accelerationIncludingGravity.x;
                         break;
                 case 180:
                         tiltX = event.accelerationIncludingGravity.x;
@@ -184,8 +190,3 @@ function handleMotionEvent(event) {
         }
  }
 
-if (window.DeviceOrientationEvent) {
-        window.addEventListener("devicemotion", handleMotionEvent, true);
-} else {
-        alert("Sorry, device orientation not supported!");
-}
