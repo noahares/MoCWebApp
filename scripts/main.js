@@ -45,7 +45,7 @@ function init() {
         setInterval("applyRandomForce()", 5 * REFRESH);
         notify("Let's go");
         hide("start");
-        setInterval("document.getElementById('info').innerHTML = tiltX + ', ' + tiltY +', ' + window.orientation", TIMEOUT);
+        setInterval("document.getElementById('info').innerHTML = window.orientation", TIMEOUT);
 }
 
 /*
